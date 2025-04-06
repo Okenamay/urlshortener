@@ -9,7 +9,7 @@ var (
 	ErrorServer           = errors.New("server error")
 	ErrorIvalidURL        = errors.New("invalid URL")
 	ErrorNoHost           = errors.New("no URL host found")
-	ErrorHTTPs            = errors.New("invalid URL scheme")
+	ErrorHTTPS            = errors.New("invalid URL scheme")
 	ErrorBadRequest       = errors.New("bad request")
 	ErrorNotFound         = errors.New("URL not found")
 	ErrorURLTooLong       = errors.New("provided URL too long")

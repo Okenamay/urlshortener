@@ -12,7 +12,7 @@ func CheckURL(reqURL string) (*url.URL, error) {
 	}
 
 	if checkedURL.Scheme != "https" && checkedURL.Scheme != "http" {
-		return nil, ErrorHTTPs
+		return nil, ErrorHTTPS
 	}
 
 	if checkedURL.Host == "" {
