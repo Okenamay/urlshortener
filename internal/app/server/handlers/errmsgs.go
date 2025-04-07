@@ -7,7 +7,7 @@ import (
 var (
 	ErrorMethodNowAllowed = errors.New("method not allowed")
 	ErrorServer           = errors.New("server error")
-	ErrorIvalidURL        = errors.New("invalid URL")
+	ErrorInvalidURL       = errors.New("invalid URL")
 	ErrorNoHost           = errors.New("no URL host found")
 	ErrorHTTPS            = errors.New("invalid URL scheme")
 	ErrorBadRequest       = errors.New("bad request")

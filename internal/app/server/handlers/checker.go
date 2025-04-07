@@ -8,7 +8,7 @@ import (
 func CheckURL(reqURL string) (*url.URL, error) {
 	checkedURL, err := url.ParseRequestURI(reqURL)
 	if err != nil {
-		return nil, ErrorIvalidURL
+		return nil, ErrorInvalidURL
 	}
 
 	if checkedURL.Scheme != "https" && checkedURL.Scheme != "http" {

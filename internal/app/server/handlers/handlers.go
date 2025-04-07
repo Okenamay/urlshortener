@@ -14,16 +14,16 @@ import (
 func AutoHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodPost:
-		wrapURL(w, r)
+		WrapURL(w, r)
 	case http.MethodGet:
-		unwrapURL(w, r)
+		UnwrapURL(w, r)
 	default:
 		http.Error(w, ErrorMethodNowAllowed.Error(), http.StatusMethodNotAllowed)
 	}
 }
 
 // Для метода POST свернём URL в короткий:
-func wrapURL(w http.ResponseWriter, r *http.Request) {
+func WrapURL(w http.ResponseWriter, r *http.Request) {
 
 	queryBody, readErr := io.ReadAll(r.Body)
 	if readErr != nil {
@@ -64,13 +64,14 @@ func wrapURL(w http.ResponseWriter, r *http.Request) {
 }
 
 // Для метода GET развернём URL в изначальный и сделаем редирект:
-func unwrapURL(w http.ResponseWriter, r *http.Request) {
-	queryID := r.URL.Path[1:]
-
-	if len(queryID) != models.IDSize {
+func UnwrapURL(w http.ResponseWriter, r *http.Request) {
+	queryID := r.URL.Path
+	if len(queryID) != models.IDSize+1 {
 		http.Error(w, ErrorInvalidShortID.Error(), http.StatusNotFound)
 		return
 	}
+
+	queryID = queryID[1:]
 
 	var urlRecord models.URL
 	if result := database.DB.Where("short_id = ?", queryID).First(&urlRecord); result.Error != nil {
